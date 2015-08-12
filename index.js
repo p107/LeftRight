@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var session = require('client-sessions');
 var engines = require('consolidate');
+var tools = require('./tools');
 
 app.use(session({
   cookieName: 'session',
@@ -25,14 +26,10 @@ for (var i = 1; i < max; i++) {
 	mydata[i] = [];
 }
 
-function random(low, high) {
-    return Math.floor(Math.random() * (high - low + 1) + low);
-}
-
 function newVoting(req) {
   var rand = [];
   for (var i = 0; i <= 1; i++) {
-    rand.push( random(1, max) );
+    rand.push( tools.random(1, max) );
   }
   req.session.last = rand;
   return rand;
