@@ -1,12 +1,18 @@
-npm run dev
-npm run start
+----------------
+  Installation
+----------------
 
-
-
-
-
-
----
-
+npm i -S express
+npm i -D nodemon
 npm install client-sessions
 npm i -S handlebars consolidate
+
+-------
+  Run
+-------
+
+Dev:
+npm run dev
+
+Prod:
+npm run start
