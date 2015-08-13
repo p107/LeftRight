@@ -1,3 +1,3 @@
 $(function(){
-  $('body').append('<div>jquery test</div>');
+  //$('body').append('<div>jquery test</div>');
 });

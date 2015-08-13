@@ -23,25 +23,29 @@ var max = 1000;
 var mydata = {};
 
 for (var i = 1; i < max; i++) {
-	mydata[i] = [];
+	mydata[i] = 0;
 }
 
-function newVoting(req) {
-  var rand = [];
-  for (var i = 0; i <= 1; i++) {
-    rand.push( tools.random(1, max) );
+//---
+
+function debVotes() {
+  var deb = {};
+  for (var i in mydata) {
+    if (mydata[i] > 0) {
+      deb[i] = mydata[i];
+    }
   }
-  req.session.last = rand;
-  return rand;
+  console.log('-- votes\n', deb);
 }
+
+//---
 
 app.get('/', function (req, res) {
-  var last = '';
-  if (typeof req.session.last == 'object') {
-    last = ' ' + JSON.stringify(req.session.last, null, 2);
+  var last = req.session.last;
+  if (typeof last != 'object') {
+    last = tools.newVoting(req, max);
   }
-	// res.send('Hello world!' + last);
-  res.render('index.hbs', {last: last});
+  res.render('index.hbs', { last: last });
 });
 
 app.get('/yo/:vote', function (req, res) {
@@ -51,22 +55,26 @@ app.get('/yo/:vote', function (req, res) {
   if (typeof last == 'object') {
     for (var i in last) {
       if (last[i] == vote) {
+        mydata[vote] += 1;
         valid = true;
         break;
       }
     }
   }
 
-  var msg = '';
-  if (!valid) {
-    msg = ' Your vote is invalid.';
+  if (valid) {
+    debVotes();
+    req.session.last = tools.newVoting(req, max);
+    res.redirect('/');
   }
-
-  res.send('vote = ' + vote + ' from ' + JSON.stringify(last, null, 2) + msg);
+  else {
+    var msg = ' Your vote is invalid.';
+    res.send('vote = ' + vote + ' from ' + JSON.stringify(last, null, 2) + msg);
+  }
 });
 
 app.get('/yo', function (req, res) {
-  var rand = newVoting(req);
+  var rand = tools.newVoting(req, max);
   res.send(JSON.stringify(rand, null, 2));
 });
 
