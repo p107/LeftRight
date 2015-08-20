@@ -1,20 +1,24 @@
 <html>
 <head>
   <title>LeftRight</title>
+  <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="css/main.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 </head>
 <body>
-  <div class="main">
-    <h1 class="title">LeftRight</h1>
-    <div class="content">
-      <div class="description"></div>
-      <div class="voting">
-        <div class="vote left">
-          <a href="/yo/{{last.[0]}}">{{last.[0]}}</a>
-        </div>
-        <div class="vote right">
-          <a href="/yo/{{last.[1]}}">{{last.[1]}}</a>
+  <div class="container">
+    <div class="main jumbotron">
+      <h1 class="title">LeftRight</h1>
+      <p>To jedyna i niepowtarzalna okazja aby całkowicie anonimowo okrelić od dawna skrywane preferencje numeryczne.</p>
+      <div class="content">
+        <div class="description"></div>
+        <div class="voting">
+          <div class="vote left">
+            <a class="btn btn-lg btn-success" href="/yo/{{last.[0]}}">{{last.[0]}}</a>
+          </div>
+          <div class="vote right">
+            <a class="btn btn-lg btn-success" href="/yo/{{last.[1]}}">{{last.[1]}}</a>
+          </div>
         </div>
       </div>
     </div>

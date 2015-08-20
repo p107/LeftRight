@@ -2,9 +2,13 @@
   Installation
 ----------------
 
+npm install
+
+--
+
 npm i -S express
 npm i -D nodemon
-npm install client-sessions
+npm i -S client-sessions
 npm i -S handlebars consolidate
 
 -------
